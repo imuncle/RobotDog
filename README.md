@@ -1,6 +1,6 @@
 ![RobotDog](img/RobotDog.jpg)
 
-# RobotDog
+# RobotDog机器狗
 小型四足机器人源码
 
 ## 资源总览
@@ -19,14 +19,19 @@
 
 ## 机器人功能展示
 * 全向移动
+
 ![全向移动](img/全向移动.gif)
+
 * 狗头稳定
+
 ![狗头稳定](img/上下云台稳.gif)
 ![狗头稳定](img/左右云台稳.gif)
+
 * 更多细节待你发现
 
 ## 代码详解
 参见以下文章：
+
 * [四足机器人制作（一） 腿部运动算法](https://imuncle.github.io/content.html?id=61)
 * [四足机器人制作（二） 姿态解析](https://imuncle.github.io/content.html?id=62)
 * [四足机器人制作（三） 全向移动](https://imuncle.github.io/content.html?id=63)
