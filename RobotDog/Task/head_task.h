@@ -19,9 +19,9 @@ struct Head_t
 	float angle_3;	//大腿关节
 	enum
 	{
-		Work,
-		Head_Stop,
-		Stable
+		Work,	// 遥控器直接控制头部末端位置
+		Head_Stop,	// 遥控器无法控制头部
+		Stable	// 遥控器控制身体姿态，同时头部稳定在原位
 	} workstate;
 };
 

@@ -37,3 +37,4 @@
 * [四足机器人制作（三） 全向移动](https://imuncle.github.io/content.html?id=63)
 * [四足机器人制作（四） 云台稳定](https://imuncle.github.io/content.html?id=64)
 * [四足机器人制作 （五） 代码实现](https://imuncle.github.io/content.html?id=73)
+* [四足机器人制作（六） 更便捷的姿态解析](https://imuncle.github.io/content.html?id=74)

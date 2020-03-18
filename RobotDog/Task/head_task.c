@@ -6,6 +6,7 @@
 
 struct Head_t head;
 
+// 头部初始状态时三个舵机的位置
 int head_init_position[3] = {505, 500, 518};
 
 void HeadInit(void)
@@ -23,6 +24,7 @@ void HeadInit(void)
 	head.workstate = Head_Stop;
 }
 
+// 头部控制函数入口
 void HeadChange(void)
 {
 	if(head.workstate == Work)
@@ -60,6 +62,7 @@ void HeadChange(void)
 	}
 }
 
+// 根据头部末端坐标计算三个舵机的角度
 void HeadCalc(void)
 {
 	float L;

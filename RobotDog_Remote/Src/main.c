@@ -149,7 +149,8 @@ int main(void)
 			count = 0;
 		}
 		
-		remote.key_1 = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13);
+		// 更新遥控器按键数据
+    remote.key_1 = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13);
 		remote.key_2 = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_14);
 		remote.key_3 = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12);
 		remote.key_4 = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_15);
@@ -166,7 +167,8 @@ int main(void)
 		tmp_buf[7] = remote.key_5;
 		tmp_buf[8] = remote.key_6;
 		
-		transmit_status = NRF24L01_TxPacket(tmp_buf);
+		// 发送遥控器指令
+    transmit_status = NRF24L01_TxPacket(tmp_buf);
 		
 		HAL_Delay(1);
   }
@@ -218,6 +220,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+// 更新遥控器摇杆数据
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef * hadc)
 {
 	float left_x,right_x,right_y,voltage_ref;

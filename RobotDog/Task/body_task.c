@@ -11,10 +11,11 @@ struct Leg_t BR_Leg;
 
 struct Body_t body;
 
+// 静止站立状态时12个舵机的位置
 int init_position[12] = {550, 641, 796,
-												 525, 491, 79,
-												 600, 864, 766,
-												 274, 342, 207};
+						 525, 491, 79,
+						 600, 864, 766,
+						 274, 342, 207};
 
 int Abs(float a)
 {
@@ -23,6 +24,7 @@ int Abs(float a)
 
 void BodyInit(void)
 {
+	// 初始化右前腿
 	FR_Leg.IDs[0] = 1;
 	FR_Leg.IDs[1] = 2;
 	FR_Leg.IDs[2] = 3;
@@ -35,6 +37,7 @@ void BodyInit(void)
 	FR_Leg.y = 0.0f;
 	FR_Leg.z = 86.6f;
 	
+	// 初始化左前腿
 	FL_Leg.IDs[0] = 4;
 	FL_Leg.IDs[1] = 5;
 	FL_Leg.IDs[2] = 6;
@@ -47,6 +50,7 @@ void BodyInit(void)
 	FL_Leg.y = 0.0f;
 	FL_Leg.z = 86.6f;
 	
+	// 初始化左后腿
 	BL_Leg.IDs[0] = 10;
 	BL_Leg.IDs[1] = 11;
 	BL_Leg.IDs[2] = 12;
@@ -59,6 +63,7 @@ void BodyInit(void)
 	BL_Leg.y = 0.0f;
 	BL_Leg.z = 86.6f;
 	
+	// 初始化右后腿
 	BR_Leg.IDs[0] = 7;
 	BR_Leg.IDs[1] = 8;
 	BR_Leg.IDs[2] = 9;
@@ -74,6 +79,7 @@ void BodyInit(void)
 	body.workstate = Stop;
 }
 
+// 根据腿末端坐标计算腿部三个舵机的位置
 void LegCalc(struct Leg_t* leg)
 {
 	leg->x =  leg->delta_x;
@@ -101,6 +107,7 @@ void LegChange(void)
 	LegCalc(&BR_Leg);
 }
 
+// 机器人姿态解析，根据机器人的yaw、pitch、roll计算四条腿末端坐标
 void AttitudeParse(void)
 {
 	float yaw_angle = 42.249f - body.yaw;
@@ -156,12 +163,14 @@ void ClearLegData(struct Leg_t * leg)
 	leg->delta_z = 0;
 }
 
+// 机器人单条腿的行走运动
 void Move(struct Leg_t * leg)
 {
 	uint8_t cycle = 36;
 	int StepLength = 2*body.vx;
 	int LR_StepLength = 2*body.vy;
 	int R_StepLength = 2*body.rotate;
+	// 设置遥控器死区
 	if(Abs(body.vx) < 2 && Abs(body.vy) < 2 && Abs(body.rotate) < 2)
 	{
 		leg->delta_x = 0;
@@ -198,6 +207,7 @@ void Move(struct Leg_t * leg)
 	}
 }
 
+// 依次控制四条腿的行走状态
 void ListLeg(void)
 {
 	static int count = 0;
@@ -286,6 +296,7 @@ void ListLeg(void)
 	}
 }
 
+// 机器人四条腿控制函数入口
 void BodyChange(void)
 {
 	if(body.workstate == Stop)
@@ -336,6 +347,7 @@ void BodyChange(void)
 	}
 }
 
+// 控制舵机
 void ServoSendData(void)
 {
 	snycWrite(FR_Leg.IDs, 3, 0x2A, FR_Leg.position);
